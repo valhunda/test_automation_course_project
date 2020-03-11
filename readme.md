@@ -1,0 +1,1 @@
+This is course project for Stepik test automation course on https://stepik.org/course/575/promo
