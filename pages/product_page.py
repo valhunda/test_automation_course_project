@@ -26,10 +26,6 @@ class ProductPage(BasePage):
     def total_cost_in_message_equivalent_price_of_product(self, price, price_in_message):
         assert price == price_in_message, f"Cost of basket is '{price_in_message}', should be '{price}'"
 
-    def wait_for_elements_after_add_to_basket_visibility(self):
-        self.WebDriverWait(self.browser, 30).until(
-            self.EC.visibility_of_element_located(ProductPageLocators.PRODUCT_ADD_TO_BASKET_MESSAGE_SELECTOR))
-
     def should_be_elements_before_add_to_basket(self):
         self.should_be_an_element(ProductPageLocators.PRODUCT_NAME_ELEMENT_SELECTOR, "Name of product is not presented")
         self.should_be_an_element(ProductPageLocators.PRICE_ELEMENT_SELECTOR, "Price of product is not presented")
