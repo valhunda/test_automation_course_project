@@ -17,4 +17,5 @@ class ProductPageLocators():
     PRODUCT_NAME_ELEMENT_SELECTOR=(By.CSS_SELECTOR, ".product_main h1")
     PRICE_ELEMENT_SELECTOR=(By.CSS_SELECTOR, ".product_main .price_color")
     PRODUCT_ADD_TO_BASKET_MESSAGE_SELECTOR=(By.CSS_SELECTOR, "#messages>.alert:nth-child(1)>.alertinner strong")
-    TOTAL_COST_OF_BASKET_MESSAGE_SELECTOR=(By.CSS_SELECTOR, "#messages>.alert:nth-child(3)>.alertinner strong")
+    TOTAL_COST_OF_BASKET_MESSAGE_SELECTOR = (By.CSS_SELECTOR, "#messages>.alert:nth-child(3)>.alertinner strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages>.alert:nth-child(1)>.alertinner")

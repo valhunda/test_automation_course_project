@@ -14,7 +14,7 @@ class BasePage():
     def open(self):
         self.browser.get(self.url)
 
-    def is_element_present(self, how, what, timeout=10):
+    def is_element_present(self, how, what, timeout=5):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -22,7 +22,7 @@ class BasePage():
 
         return True
 
-    def is_not_element_present(self, how, what, timeout=5):
+    def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except TimeoutException:
@@ -30,7 +30,7 @@ class BasePage():
 
         return False
 
-    def is_disappeared(self, how, what, timeout=5):
+    def is_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException). \
                 until_not(EC.presence_of_element_located((how, what)))
@@ -55,5 +55,11 @@ class BasePage():
         except (NoAlertPresentException, TimeoutException) as e:
             print("No second alert presented")
 
-    def should_be_an_element(self, locator_and_timeout, assertion_message):
-        assert self.is_element_present(*locator_and_timeout), assertion_message
+    # def should_be_an_element(self, locator_and_timeout, assertion_message):
+    #     assert self.is_element_present(*locator_and_timeout), assertion_message
+    #
+    # def should_not_be_an_element(self, locator_and_timeout, assertion_message):
+    #     assert self.is_not_element_present(*locator_and_timeout), assertion_message
+    #
+    # def elenent_should_be_disappered(self, locator_and_timeout, assertion_message):
+    #     assert self.is_disappeared(*locator_and_timeout), assertion_message

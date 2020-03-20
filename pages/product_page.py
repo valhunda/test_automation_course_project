@@ -27,13 +27,23 @@ class ProductPage(BasePage):
         assert price == price_in_message, f"Cost of basket is '{price_in_message}', should be '{price}'"
 
     def should_be_elements_before_add_to_basket(self):
-        self.should_be_an_element(ProductPageLocators.PRODUCT_NAME_ELEMENT_SELECTOR, "Name of product is not presented")
-        self.should_be_an_element(ProductPageLocators.PRICE_ELEMENT_SELECTOR, "Price of product is not presented")
-        self.should_be_an_element(ProductPageLocators.ADD_TO_BASKET_BUTTON_SELECTOR,
-                                  "Add-to-basket button is not presented")
+        assert self.is_element_present(
+            *ProductPageLocators.PRODUCT_NAME_ELEMENT_SELECTOR), "Name of product is not presented on product page"
+        assert self.is_element_present(
+            *ProductPageLocators.PRICE_ELEMENT_SELECTOR), "Price of product is not presented on product page"
+        assert self.is_element_present(
+            *ProductPageLocators.ADD_TO_BASKET_BUTTON_SELECTOR), "Add-to-basket button is not presented on product page"
 
     def should_be_elements_after_add_to_basket(self):
-        self.should_be_an_element(ProductPageLocators.PRODUCT_ADD_TO_BASKET_MESSAGE_SELECTOR,
-                                  "Product-add-to-basket message is not presented")
-        self.should_be_an_element(ProductPageLocators.TOTAL_COST_OF_BASKET_MESSAGE_SELECTOR,
-                                  "Total-cost-of-basket message is not presented")
+        assert self.is_element_present(
+            *ProductPageLocators.PRODUCT_ADD_TO_BASKET_MESSAGE_SELECTOR), "Product-add-to-basket message is not presented on product page"
+        assert self.is_element_present(
+            *ProductPageLocators.TOTAL_COST_OF_BASKET_MESSAGE_SELECTOR), "Total-cost-of-basket message is not presented on product page"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(
+            *ProductPageLocators.SUCCESS_MESSAGE), "Sucsess message should not be presented on product page"
+
+    def sucsess_message_should_disappeared(self):
+        assert self.is_disappeared(
+            *ProductPageLocators.SUCCESS_MESSAGE), "Sucsess message should be desappeared on product page"

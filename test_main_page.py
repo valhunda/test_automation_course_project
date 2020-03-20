@@ -4,6 +4,13 @@ import pytest
 
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/"])
+def test_guest_should_see_login_link(browser, link):
+    page = MainPage(browser, link)
+    page.open()
+    page.should_be_login_link()
+
+
+@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/"])
 def test_guest_can_go_to_login_page(browser, link):
     page = MainPage(browser, link)
     page.open()
@@ -11,11 +18,5 @@ def test_guest_can_go_to_login_page(browser, link):
 
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_url()
-    login_page.should_be_elements_on_login_page()
-
-
-@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/"])
-def test_guest_should_see_login_link(browser, link):
-    page = MainPage(browser, link)
-    page.open()
-    page.should_be_login_link()
+    login_page.should_be_login_form_on_login_page()
+    login_page.should_be_register_form_on_login_page()
