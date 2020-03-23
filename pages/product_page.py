@@ -47,3 +47,4 @@ class ProductPage(BasePage):
     def sucsess_message_should_disappeared(self):
         assert self.is_disappeared(
             *ProductPageLocators.SUCCESS_MESSAGE), "Sucsess message should be desappeared on product page"
+

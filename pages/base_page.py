@@ -3,13 +3,14 @@ import math
 # import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from .locators import BasePageLocators
 
 
-class BasePage():
+class BasePage:
 
     def __init__(self, browser, url, timeout=30):
-        self.browser=browser
-        self.url=url
+        self.browser = browser
+        self.url = url
 
     def open(self):
         self.browser.get(self.url)
@@ -55,11 +56,16 @@ class BasePage():
         except (NoAlertPresentException, TimeoutException) as e:
             print("No second alert presented")
 
-    # def should_be_an_element(self, locator_and_timeout, assertion_message):
-    #     assert self.is_element_present(*locator_and_timeout), assertion_message
-    #
-    # def should_not_be_an_element(self, locator_and_timeout, assertion_message):
-    #     assert self.is_not_element_present(*locator_and_timeout), assertion_message
-    #
-    # def elenent_should_be_disappered(self, locator_and_timeout, assertion_message):
-    #     assert self.is_disappeared(*locator_and_timeout), assertion_message
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def should_be_basket_button(self):
+        assert self.is_element_present(*BasePageLocators.BASKET_BUTTON), "Basket button is not presented"
+
+    def go_to_basket(self):
+        link = self.browser.find_element(*BasePageLocators.BASKET_BUTTON)
+        link.click()
